@@ -23,9 +23,11 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomePage(viewModel: homeViewModel){
-    Scaffold (
-        modifier = Modifier.fillMaxWidth().padding(10.dp),
+fun HomePage(viewModel: homeViewModel) {
+    Scaffold(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
         topBar = {
             TopAppBar(
                 colors = topAppBarColors(
@@ -53,11 +55,17 @@ fun HomePage(viewModel: homeViewModel){
                 )
             }
         }
-    ){ innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding).fillMaxWidth()) {
-            Row (
-                modifier=Modifier.fillMaxWidth().padding(10.dp)
-            ){
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxWidth()
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            ) {
                 val context = LocalContext.current
                 Button(onClick = {
                     // This intent opens the Accessibility settings directly
@@ -67,12 +75,11 @@ fun HomePage(viewModel: homeViewModel){
                     Text("Go to Accessibility Settings")
                 }
             }
-
         }
     }
 }
 
 @Composable
-fun HomePageTopBar(){
-    Row { Text("Title of APplication") }
+fun HomePageTopBar() {
+    Row { Text("Title of Application") }
 }

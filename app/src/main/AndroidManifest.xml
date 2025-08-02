@@ -15,7 +15,7 @@
             android:exported="true"
             android:resizeableActivity="true"
             android:theme="@style/Theme.MyApplication.NoActionBar"
-            tools:targetApi="24">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

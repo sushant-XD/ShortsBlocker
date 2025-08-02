@@ -33,3 +33,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
+private fun AppCompatActivity.onCreate(bundle: Bundle?) {}

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.myapplication"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.myapplication"
@@ -41,7 +41,7 @@ android {
 
 dependencies {
 
-    implementation(platform("androidx.compose:compose-bom:2025.06.00"))
+    implementation(platform(libs.androidx.compose.bom))
 
     // Choose one of the following:
     // Material Design 3
@@ -86,4 +86,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    
 }
