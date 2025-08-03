@@ -1,11 +1,15 @@
 package com.example.myapplication
 
 import android.accessibilityservice.AccessibilityService
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
+import androidx.core.app.NotificationCompat
 import com.example.myapplication.utils.TAG_MAIN
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +40,30 @@ class MyAccessibilityService : AccessibilityService() {
     private var scannerJob: Job? = null
     override fun onInterrupt() {
         Log.d(TAG_MAIN, "Service interrupted.")
+    }
+
+    override fun onServiceConnected() {
+        super.onServiceConnected()
+
+        val channelId = "shorts_blocker_service_channel"
+        val channelName = "Shorts Blocker Service"
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val channel =
+            NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_LOW)
+        notificationManager.createNotificationChannel(channel)
+
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle("Shorts Blocker is Active")
+            .setContentText("Protecting your focus.")
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setOngoing(true)
+            .build()
+
+        // A unique integer ID for the notification
+        val NOTIFICATION_ID = 1
+        startForeground(NOTIFICATION_ID, notification)
     }
 
     // this is the main function called when "our" accessibility event is triggered
@@ -131,8 +159,6 @@ class MyAccessibilityService : AccessibilityService() {
             if (contentDesc.contains(text, ignoreCase = true)) {
                 Log.d(TAG_MAIN, "Found Shorts in Content Description")
                 return true
-            } else {
-                Log.e(TAG_MAIN, "$contentDesc")
             }
         }
         for (i in 0 until node.childCount) {

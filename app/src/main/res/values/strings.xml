@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Shorts Blocker</string>
 
     <string name="accessibility_service_label">Shorts Blocker</string>
     <string name="accessibility_service_description">Blocks YouTube Shorts and Facebook Reels to help you focus.</string>
